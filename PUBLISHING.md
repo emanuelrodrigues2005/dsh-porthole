@@ -6,18 +6,16 @@ test is exactly what you publish.
 
 ## 0. Before the first publish
 
-1. **Replace the placeholders.** `package.json` ships `author`, `repository`,
-   `homepage` and `bugs` values containing `emanuelrodrigues2005` /
-   `you@example.com`, and `README.md` links to
-   `github:<your-github-user>/dsh-porthole`. Point them at the real repository
-   before publishing, or the npm page will link nowhere.
+1. **Confirm the metadata.** `package.json` already carries the real author,
+   repository, homepage and bugs (`github.com/emanuelrodrigues2005/dsh-porthole`),
+   and `README.md` links to the same repository. Verify:
 
    ```sh
-   node -e "const p=require('./package.json');console.log(p.author,p.repository.url)"
+   node -e "const p=require('./package.json');console.log(p.name,p.author,p.repository.url)"
    ```
 
 2. **Confirm the name is still free.** `dsh-pair` is taken by an unrelated
-   package; this one publishes as `dsh-porthole`.
+   package; this one publishes as `dsh-porthole` (checked free on 2026-11-17).
 
    ```sh
    npm view dsh-porthole version    # 404 = free; any version = pick another name
