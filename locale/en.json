@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Pair",
+    "description": "Reach this DeepSeek Harness GUI from your phone: a guided per-OS Tailscale setup with automatic public-URL detection, a fail-closed gate behind Tailscale Funnel or a Cloudflare quick tunnel, a single-use QR pairing ticket, an installable PWA, and Web Push for approvals, questions, turn completions and reports.",
+    "detail": "docs/DETAIL.md"
+  }
+}

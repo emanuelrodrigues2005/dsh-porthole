@@ -1,0 +1,44 @@
+# dsh-porthole — bundle layer.
+#
+# One row, and nothing else is touched: the harness keeps its shipped loopback
+# bind and the tunnel/gate is a SECOND listener in front of it, so a failed or
+# stopped Pair degrades to "unreachable from the phone", never to "the GUI is
+# open to the network". The gate itself binds 127.0.0.1 only.
+#
+# This file is static and environment-parameterized. There is no `--pair-*`
+# command line: the surface app owns the invocation's parser and rejects any
+# option it does not declare, so a bundle flag would fail `dsh web` before this
+# plugin loaded. Per-invocation overrides therefore read the environment from
+# the `!!js` expressions below. Edit the values here for anything permanent.
+#
+# A profile patch that restates this row replaces `config` WHOLE — it is not
+# deep-merged — so an override must keep every key it still wants:
+#
+#   # $DSH_HOME/profiles/<name>/cordis.patch.yml
+#   - id: dsh-porthole
+#     config:
+#       gatePort: 8791
+#       publicUrl: 'https://my-machine.my-tailnet.ts.net'
+#       autoStart: true
+#       cloudflaredPath: ''
+#       deviceTtlDays: 30
+#       ticketTtlSeconds: 300
+#
+# Environment variables read below:
+#   DSH_PAIR_DISABLE=1        disable the row without editing this file
+#   DSH_PAIR_GATE_PORT=<n>    loopback gate port (0 = OS-assigned)
+#   DSH_PAIR_PUBLIC_URL=<url> stable public https:// origin (Funnel); '' = quick tunnel
+#   DSH_PAIR_AUTO_START=0     do not start the gate on load in public-URL mode
+#   DSH_PAIR_CLOUDFLARED=<p>  explicit cloudflared executable
+
+- insert:
+    - id: dsh-porthole
+      name: 'dsh-porthole'
+      disabled: !!js process.env.DSH_PAIR_DISABLE === '1'
+      config:
+        gatePort: !!js Number(process.env.DSH_PAIR_GATE_PORT ?? 0)
+        publicUrl: !!js process.env.DSH_PAIR_PUBLIC_URL ?? ''
+        autoStart: !!js process.env.DSH_PAIR_AUTO_START !== '0'
+        cloudflaredPath: !!js process.env.DSH_PAIR_CLOUDFLARED ?? ''
+        deviceTtlDays: 30
+        ticketTtlSeconds: 300

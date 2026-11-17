@@ -1,0 +1,77 @@
+{
+  "name": "dsh-porthole",
+  "version": "0.1.0",
+  "description": "Porthole for DeepSeek Harness: pair your phone over a QR code through a fail-closed gate and a Tailscale Funnel or Cloudflare tunnel, install the GUI as a PWA, and receive Web Push for approvals, questions, turn completions and reports.",
+  "keywords": [
+    "dsh-plugin",
+    "dsh",
+    "deepseek-harness",
+    "porthole",
+    "pair",
+    "remote",
+    "remote-access",
+    "tailscale",
+    "pwa",
+    "push",
+    "tunnel"
+  ],
+  "license": "MIT",
+  "author": "Emanuel Rodrigues <emanuelrodrigues112358@gmail.com> (https://github.com/emanuelrodrigues2005)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emanuelrodrigues2005/dsh-porthole.git"
+  },
+  "homepage": "https://github.com/emanuelrodrigues2005/dsh-porthole#readme",
+  "bugs": {
+    "url": "https://github.com/emanuelrodrigues2005/dsh-porthole/issues"
+  },
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./pair/client/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "pair/host/*.js",
+    "pair/host/setup.js",
+    "pair/host/setup-tool.js",
+    "pair/host/vendor/qrcodegen.js",
+    "pair/host/vendor/qrcodegen.LICENSE.txt",
+    "pair/host/vendor/VENDORED.md",
+    "pair/client/client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "docs",
+    "skills/dsh-pair-setup/SKILL.md",
+    "README.md",
+    "PUBLISHING.md",
+    "LICENSE",
+    "scripts/check-package.mjs"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-layout"
+      ]
+    }
+  },
+  "engines": {
+    "node": ">=22",
+    "dsh": ">=0.2.2-rc.2 <0.3.0-0"
+  },
+  "scripts": {
+    "test": "node --test --test-isolation=none \"pair/test/*.test.mjs\"",
+    "check": "node scripts/check-package.mjs",
+    "prepack": "node scripts/check-package.mjs",
+    "pack:check": "npm pack --dry-run"
+  }
+}

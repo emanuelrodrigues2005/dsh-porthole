@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Pair",
+    "description": "Acesse esta interface do DeepSeek Harness pelo celular: uma configuração guiada do Tailscale por sistema operacional, com detecção automática da URL pública, um portão que falha fechado atrás do Tailscale Funnel ou de um quick tunnel da Cloudflare, uma credencial de pareamento QR de uso único, um PWA instalável e Web Push para aprovações, perguntas, fim de turno e relatórios.",
+    "detail": "docs/DETAIL.md"
+  }
+}
