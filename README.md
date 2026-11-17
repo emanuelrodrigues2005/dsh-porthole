@@ -1,5 +1,9 @@
 # dsh-porthole
 
+[![npm](https://img.shields.io/npm/v/dsh-porthole)](https://www.npmjs.com/package/dsh-porthole)
+[![license](https://img.shields.io/npm/l/dsh-porthole)](LICENSE)
+[![GitHub](https://img.shields.io/badge/github-emanuelrodrigues2005%2Fdsh--porthole-181717?logo=github)](https://github.com/emanuelrodrigues2005/dsh-porthole)
+
 Pair your phone with a [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
 web profile: a fail-closed gate in front of the untouched loopback GUI, a
 single-use QR pairing ticket, an installable PWA, and Web Push for approvals,
@@ -39,7 +43,7 @@ Into the profile you boot with (`web` below — use your own profile name):
 dsh plugin --profile web add dsh-porthole
 
 # from a checkout or a git host
-dsh plugin --profile web add github:<your-github-user>/dsh-porthole
+dsh plugin --profile web add github:emanuelrodrigues2005/dsh-porthole
 
 # from a tarball produced by `npm pack`
 dsh plugin --profile web add ./dsh-porthole-0.1.0.tgz
